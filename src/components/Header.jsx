@@ -7,6 +7,14 @@ function Header() {
   const openNav = () => {
     setShowNav(!showNav);
   };
+
+  const listItems = [
+    { text: "Home", id: "#home" },
+    { text: "About", id: "#about" },
+    { text: "Services", id: "#services" },
+    { text: "Portfolio", id: "#portfolio" },
+    { text: "Contact", id: "#contact" },
+  ];
   return (
     <>
       <div
@@ -18,32 +26,23 @@ function Header() {
         >
           MARIYAN
         </a>
-        {showNav ? (
-          <p onClick={openNav} className="text-5xl md:hidden text-white">
-            &#x2715;
-          </p>
-        ) : (
-          <p onClick={openNav} className="text-5xl md:hidden text-white">
-            &#9776;
-          </p>
-        )}
+        <p onClick={openNav} className="text-5xl md:hidden text-white">
+          {showNav ? <>&#x2715;</> : <>&#9776;</>}
+        </p>
         <ul className="text-xl text-white  hidden md:flex  ">
-          <li className="mr-4 duration-[250ms] hover:text-[#ccc]">
-            <a href="#home">Home</a>
-          </li>
-          <li className="mr-4 duration-[250ms] hover:text-[#ccc]">
-            <a href="#about">About</a>
-          </li>
-          <li className="mr-4 duration-[250ms] hover:text-[#ccc]">
-            <a href="#services">Services</a>
-          </li>
-          <li className="mr-4 duration-[250ms] hover:text-[#ccc]">
-            <a href="#portfolio">Portfolio</a>
-          </li>
-
-          <li className=" text-[#D0A380] ">
-            <a href="#contact">Contact</a>
-          </li>
+          {listItems.map((listItem, i) => {
+            return (
+              <React.Fragment key={i}>
+                <li
+                  className={`mr-4 duration-[250ms] hover:text-[#aaa] ${
+                    listItem.text === "Contact" && "text-[#D0A380]"
+                  } ${listItem.text === "Contact" && "hover:text-[#523625]"} `}
+                >
+                  <a href={listItem.id}>{listItem.text}</a>
+                </li>
+              </React.Fragment>
+            );
+          })}
         </ul>
       </div>
       <div
@@ -51,23 +50,22 @@ function Header() {
           showNav ? "ml-0" : "-ml-[800px]"
         }`}
       >
-        <li>
-          <a href="#home">home</a>
-        </li>
-        <li>
-          <a href="#about">about</a>
-        </li>
-        <li>
-          <a href="#services">services</a>
-        </li>
-        <li>
-          <a href="#portfolio">portfolio</a>
-        </li>
-        <li>
-          <a className="text-[#D0A380] " href="#contact">
-            contact
-          </a>
-        </li>
+        {listItems.map((listItem, i) => {
+          return (
+            <React.Fragment key={i}>
+              <li>
+                <a
+                  className={`lowercase ${
+                    listItem.id === "#contact" && "text-[#D0A380]"
+                  }`}
+                  href={listItem.id}
+                >
+                  {listItem.text}
+                </a>
+              </li>
+            </React.Fragment>
+          );
+        })}
       </div>
     </>
   );

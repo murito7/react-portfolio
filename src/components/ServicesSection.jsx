@@ -1,9 +1,14 @@
 import React from "react";
-import computer from "../assets/computer.png";
-import design from "../assets/computer-design.png";
-import support from "../assets/support.png";
+import Computer from "../assets/computer.png";
+import Design from "../assets/computer-design.png";
+import Support from "../assets/support.png";
 
 function ServicesSection() {
+  const servicesBoxes = [
+    { image: Computer, text: "Web Development", alt: "Web Development" },
+    { image: Design, text: "Web Design", alt: "Web Design" },
+    { image: Support, text: "Support", alt: "Support" },
+  ];
   return (
     <div
       id="services"
@@ -15,24 +20,22 @@ function ServicesSection() {
         </h1>
 
         <div className="mt-10 lg:flex">
-          <div className="w-[90%] lg:w-[320px] mx-auto  rounded-md bg-[#fff] py-10">
-            <img className="mx-auto" src={computer} alt="" />
-            <p className="text-center text-black text-2xl pt-10 font-bold">
-              Web Development
-            </p>
-          </div>
-          <div className="w-[90%] mt-5 lg:mt-0 mx-auto lg:w-[320px]  rounded-md bg-[#fff] py-10">
-            <img className="mx-auto" src={design} alt="" />
-            <p className="text-center text-black text-2xl pt-10 font-bold">
-              Web Design
-            </p>
-          </div>
-          <div className="w-[90%] lg:mt-0  mt-5 mx-auto lg:w-[320px]  rounded-md bg-[#fff] py-10">
-            <img className="mx-auto" src={support} alt="" />
-            <p className="text-center text-black text-2xl pt-10 font-bold">
-              Support
-            </p>
-          </div>
+          {servicesBoxes.map((service, i) => {
+            return (
+              <React.Fragment key={i}>
+                <div className="w-[90%] mt-5 lg:mt-0 lg:w-[320px] mx-auto  rounded-md bg-[#fff] py-10">
+                  <img
+                    className="mx-auto"
+                    src={service.image}
+                    alt={service.alt}
+                  />
+                  <p className="text-center text-black text-2xl pt-10 font-bold">
+                    {service.text}
+                  </p>
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
       <div className=" hidden md:block absolute md:top-[1005px] lg:top-[505px] left-0 w-[100%] desktop-responsive:hidden overflow-hidden leading-0 z-[10]">

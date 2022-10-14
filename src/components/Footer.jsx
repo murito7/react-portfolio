@@ -1,6 +1,13 @@
 import React from "react";
 
 function Footer() {
+  const listItems = [
+    { text: "Home", id: "#home" },
+    { text: "About", id: "#about" },
+    { text: "Services", id: "#services" },
+    { text: "Portfolio", id: "#portfolio" },
+    { text: "Contact", id: "#contact" },
+  ];
   return (
     <div className="bg-[#1A1A19] pt-[50px] pb-[20px]">
       <div className="md:w-[350px] mx-auto  text-center  ">
@@ -14,25 +21,23 @@ function Footer() {
           <h1 className="text-white text-center text-3xl font-bold tracking-[3px]   ">
             CONTENT
           </h1>
-          <ul className="mt-5 text-[#eee] text-xl ">
-            {" "}
-            <li className="hover:text-[#ccc]">
-              <a href="#home">home</a>
-            </li>
-            <li className="mt-2 hover:text-[#ccc]">
-              <a href="#about">about</a>
-            </li>
-            <li className="mt-2 hover:text-[#ccc]">
-              <a href="#services">services</a>
-            </li>
-            <li className="mt-2 hover:text-[#ccc]">
-              <a href="#portfolio">portfolio</a>
-            </li>
-            <li className="mt-2 hover:text-[#ccc]">
-              <a className="text-[#D0A380] " href="#contact">
-                contact
-              </a>
-            </li>
+          <ul className="mt-5 flex flex-col h-[180px] justify-between text-[#eee] text-xl ">
+            {listItems.map((listItem, i) => {
+              return (
+                <React.Fragment key={i}>
+                  <li>
+                    <a
+                      className={`lowercase ${
+                        listItem.id === "#contact" && "text-[#D0A380]"
+                      }`}
+                      href={listItem.id}
+                    >
+                      {listItem.text}
+                    </a>
+                  </li>
+                </React.Fragment>
+              );
+            })}
           </ul>
         </div>
       </div>
